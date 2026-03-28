@@ -3,496 +3,995 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Briefing — Yacadi</title>
+<title>Briefing Yacadi — Cuéntanos todo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root {
+  --cream: #FAF6F0;
+  --warm-white: #FFFDF9;
+  --terracotta: #C4623A;
+  --terracotta-light: #E8856A;
+  --terracotta-bg: rgba(196,98,58,0.06);
+  --gold: #B8922A;
+  --gold-light: #F0C060;
+  --deep: #2C1810;
+  --mid: #6B4C3B;
+  --light: #9B8678;
+  --light-border: #E8DDD4;
+  --section-bg: #FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--deep);min-height:100vh;padding-bottom:80px}
 
-  *{box-sizing:border-box;margin:0;padding:0}
+/* HERO */
+.hero{background:var(--deep);padding:56px 24px 44px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;left:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(196,98,58,0.25) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-80px;right:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(184,146,42,0.18) 0%,transparent 70%);border-radius:50%}
+.brand-tag{display:inline-block;background:var(--terracotta);color:white;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:20px;position:relative;z-index:1}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,50px);color:var(--cream);line-height:1.15;margin-bottom:14px;position:relative;z-index:1}
+.hero h1 em{color:var(--gold-light);font-style:italic}
+.hero p{color:rgba(250,246,240,0.6);font-size:14px;font-weight:300;max-width:500px;margin:0 auto 20px;line-height:1.7;position:relative;z-index:1}
+.hero-meta{display:flex;justify-content:center;gap:24px;position:relative;z-index:1}
+.hero-meta span{font-size:12px;color:rgba(250,246,240,0.45);display:flex;align-items:center;gap:5px}
+.hero-meta span::before{content:'';width:4px;height:4px;background:var(--terracotta);border-radius:50%;flex-shrink:0}
 
-  :root{
-    --brand:#0f0f14;
-    --accent:#c8a96e;
-    --accent-light:#e8d5a8;
-    --accent-glow:rgba(200,169,110,.08);
-    --surface:#17171e;
-    --surface-2:#1e1e28;
-    --surface-3:#252530;
-    --border:#2a2a38;
-    --border-hover:#3a3a4a;
-    --text:#f0ede6;
-    --text-mid:#b0aca0;
-    --muted:#706c62;
-    --ff-display:'Instrument Serif',serif;
-    --ff-body:'DM Sans',sans-serif;
-    --radius:12px;
-  }
+/* PROGRESS */
+.sticky-progress{background:var(--deep);padding:0 24px 20px;position:sticky;top:0;z-index:100}
+.progress-track{max-width:680px;margin:0 auto}
+.progress-steps{display:flex;align-items:center;gap:0;margin-bottom:8px}
+.prog-step{flex:1;height:3px;background:rgba(250,246,240,0.15);transition:background .35s;position:relative}
+.prog-step.done{background:var(--gold)}
+.prog-step.active{background:var(--terracotta)}
+.prog-step:first-child{border-radius:2px 0 0 2px}
+.prog-step:last-child{border-radius:0 2px 2px 0}
+.progress-label{display:flex;justify-content:space-between;align-items:center}
+.progress-label span{font-size:11px;color:rgba(250,246,240,0.4);font-weight:300}
+.progress-label strong{font-size:11px;color:var(--terracotta);font-weight:500;font-family:'Playfair Display',serif;font-style:italic}
 
-  html{background:var(--brand);color:var(--text)}
-  body{font-family:var(--ff-body);-webkit-font-smoothing:antialiased}
+/* WRAPPER */
+.form-wrapper{max-width:680px;margin:0 auto;padding:0 16px}
 
-  .wrap{max-width:680px;margin:0 auto;padding:3rem 1.5rem 5rem}
+/* SECTION CARD */
+.section{background:var(--section-bg);border-radius:16px;padding:32px 28px;margin-top:18px;border:1px solid var(--light-border);display:none;animation:fadeUp .38s ease}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-  /* ─── Header ─── */
-  .header{text-align:center;padding:2.5rem 0 3rem;margin-bottom:2.5rem;position:relative}
-  .header::after{content:'';display:block;width:60px;height:1px;background:var(--accent);margin:0 auto;position:absolute;bottom:0;left:50%;transform:translateX(-50%)}
-  .header .tag{font-family:var(--ff-body);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block}
-  .header h1{font-family:var(--ff-display);font-size:clamp(32px,5vw,42px);font-weight:400;color:var(--text);letter-spacing:-0.5px;margin-bottom:.75rem;line-height:1.15}
-  .header h1 em{font-style:italic;color:var(--accent)}
-  .header p{font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;max-width:420px;margin:0 auto}
+.section-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--light-border)}
+.section-num{min-width:42px;height:42px;background:var(--terracotta);color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0}
+.section-title h2{font-family:'Playfair Display',serif;font-size:21px;color:var(--deep);margin-bottom:3px;line-height:1.2}
+.section-title p{font-size:13px;color:var(--mid);font-weight:300;line-height:1.5}
 
-  /* ─── Progress ─── */
-  .progress-bar{display:flex;gap:6px;justify-content:center;margin-bottom:2.5rem}
-  .prog-dot{width:32px;height:3px;border-radius:3px;background:var(--surface-3);transition:all .4s ease}
-  .prog-dot.active{background:var(--accent);box-shadow:0 0 8px rgba(200,169,110,.3)}
-  .prog-dot.done{background:var(--border-hover)}
+/* AI BADGE */
+.ai-note{display:inline-flex;align-items:center;gap:6px;background:rgba(184,146,42,0.1);border:1px solid rgba(184,146,42,0.25);border-radius:6px;padding:5px 10px;font-size:11px;color:var(--gold);font-weight:400;margin-bottom:18px}
+.ai-note::before{content:'✦';font-size:10px}
 
-  /* ─── Sections ─── */
-  .section{display:none}
-  .section.active{display:block;animation:fadeUp .4s cubic-bezier(.22,1,.36,1)}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* FIELDS */
+.field{margin-bottom:22px}
+.field:last-of-type{margin-bottom:0}
+label.field-label{display:block;font-size:12px;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:.9px;margin-bottom:7px}
+label.field-label .req{color:var(--terracotta);margin-left:2px}
+.hint{display:block;font-size:12px;font-weight:300;text-transform:none;letter-spacing:0;color:var(--light);margin-top:3px;line-height:1.5}
+.example{display:block;font-size:12px;color:rgba(107,76,59,0.6);font-style:italic;margin-top:4px;padding:7px 10px;background:var(--terracotta-bg);border-radius:6px;font-weight:300;line-height:1.5}
 
-  .section-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
-  .section-title{font-family:var(--ff-display);font-size:clamp(22px,3.5vw,28px);font-weight:400;color:var(--text);margin-bottom:.5rem;line-height:1.2}
-  .section-desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+input[type=text],input[type=tel],textarea,select{width:100%;padding:13px 15px;border:1.5px solid var(--light-border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--deep);background:var(--warm-white);transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none}
+input:focus,textarea:focus,select:focus{border-color:var(--terracotta);box-shadow:0 0 0 3px rgba(196,98,58,0.09)}
+textarea{resize:vertical;min-height:96px;line-height:1.65}
+select{cursor:pointer}
+select option{background:#fff}
 
-  /* ─── Question blocks ─── */
-  .q-block{margin-bottom:2rem}
-  .q-label{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.35rem;display:flex;align-items:baseline;gap:8px;line-height:1.5}
-  .q-num{font-size:12px;color:var(--accent);font-weight:400;font-family:var(--ff-display);font-style:italic;min-width:18px}
-  .q-hint{font-size:12px;color:var(--muted);font-weight:300;margin-bottom:.75rem;line-height:1.6}
+/* OPTION GROUPS */
+.option-group{display:grid;gap:9px}
+.option-group.g2{grid-template-columns:1fr 1fr}
+.option-group.g3{grid-template-columns:repeat(3,1fr)}
+.option-group.g1{grid-template-columns:1fr}
+.option-group.auto{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+@media(max-width:520px){.option-group.g2,.option-group.g3,.option-group.auto{grid-template-columns:1fr}}
 
-  /* ─── Inputs ─── */
-  input[type=text],textarea,select{
-    width:100%;padding:14px 18px;
-    font-family:var(--ff-body);font-size:15px;font-weight:300;
-    color:var(--text);
-    background:var(--surface-2);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    outline:none;
-    transition:all .25s ease;
-    resize:vertical;
-    box-shadow:inset 0 1px 3px rgba(0,0,0,.15)
-  }
-  input[type=text]:hover,textarea:hover,select:hover{
-    border-color:var(--border-hover);
-    background:var(--surface-3)
-  }
-  input[type=text]:focus,textarea:focus,select:focus{
-    border-color:var(--accent);
-    background:var(--surface-3);
-    box-shadow:0 0 0 3px var(--accent-glow),inset 0 1px 3px rgba(0,0,0,.1)
-  }
-  input[type=text]::placeholder,textarea::placeholder{color:var(--muted);font-weight:300;opacity:.6}
-  textarea{min-height:100px;line-height:1.7}
-  select{cursor:pointer;appearance:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23706c62' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 16px center}
-  select option{background:var(--surface-2);color:var(--text);padding:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt label{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1.5px solid var(--light-border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--deep);background:var(--warm-white);transition:all .2s;user-select:none;line-height:1.3}
+.opt label::before{content:'';min-width:17px;height:17px;border:2px solid var(--light-border);border-radius:50%;transition:all .2s;flex-shrink:0}
+.opt input[type=checkbox]+label::before{border-radius:4px}
+.opt input:checked+label{border-color:var(--terracotta);background:var(--terracotta-bg);color:var(--terracotta)}
+.opt input:checked+label::before{background:var(--terracotta);border-color:var(--terracotta)}
 
-  /* ─── Chips ─── */
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-  .chip{padding:8px 18px;font-size:13px;font-weight:400;border-radius:100px;
-    border:1px solid var(--border);cursor:pointer;transition:all .25s ease;
-    background:var(--surface-2);color:var(--text-mid);user-select:none}
-  .chip:hover{border-color:var(--border-hover);background:var(--surface-3);color:var(--text)}
-  .chip.sel{border-color:var(--accent);color:var(--accent);background:var(--accent-glow);font-weight:500}
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{padding:7px 14px;font-size:12px;font-weight:400;border-radius:20px;border:1.5px solid var(--light-border);cursor:pointer;transition:all .2s;background:var(--warm-white);color:var(--mid);user-select:none;font-family:'DM Sans',sans-serif}
+.chip.on{border-color:var(--terracotta);color:var(--terracotta);background:var(--terracotta-bg)}
 
-  /* ─── Grid ─── */
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+/* DIVIDER */
+hr.div{border:none;border-top:1px dashed var(--light-border);margin:22px 0}
 
-  /* ─── Navigation ─── */
-  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--border)}
-  .nav-info{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:.5px}
-  .btn{padding:12px 28px;font-family:var(--ff-body);font-size:13px;font-weight:500;
-    border-radius:var(--radius);cursor:pointer;transition:all .25s ease;border:1px solid;letter-spacing:.3px}
-  .btn-ghost{background:transparent;color:var(--text-mid);border-color:var(--border)}
-  .btn-ghost:hover{color:var(--text);border-color:var(--border-hover);background:var(--surface-2)}
-  .btn-primary{background:var(--accent);color:var(--brand);border-color:var(--accent);font-weight:600}
-  .btn-primary:hover{background:var(--accent-light);border-color:var(--accent-light)}
+/* GRID 2 */
+.g2-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.g2-row{grid-template-columns:1fr}}
 
-  /* ─── Results ─── */
-  .result-wrap{display:none;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
-  .result-wrap.show{display:block}
-  .result-header{text-align:center;padding:2.5rem 0 2rem}
-  .result-icon{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--accent);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;
-    color:var(--accent);font-size:24px;background:var(--accent-glow)}
-  .result-header h2{font-family:var(--ff-display);font-size:26px;font-weight:400;color:var(--text);margin-bottom:.5rem}
-  .result-header p{font-size:13px;color:var(--muted);font-weight:300}
+/* NAV */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+.btn{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 26px;border-radius:10px;border:none;cursor:pointer;transition:all .2s;letter-spacing:.2px}
+.btn-primary{background:var(--terracotta);color:white}
+.btn-primary:hover{background:#b5542f;transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--mid);border:1.5px solid var(--light-border)}
+.btn-secondary:hover{border-color:var(--mid)}
+.btn-gold{background:var(--gold);color:white}
+.btn-gold:hover{background:#a07e22;transform:translateY(-1px)}
+.step-counter{font-size:12px;color:var(--light);text-align:center;flex:1}
 
-  .result-grid{display:grid;gap:14px}
-  .res-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;transition:border-color .2s}
-  .res-card:hover{border-color:var(--border-hover)}
-  .res-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .res-num{font-size:12px;font-family:var(--ff-display);font-style:italic;color:var(--accent)}
-  .res-q{font-size:13px;font-weight:500;color:var(--text)}
-  .res-a{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.7;word-break:break-word}
+/* RESULT SCREEN */
+.result{display:none;background:var(--section-bg);border-radius:16px;padding:36px 28px;margin-top:18px;border:1px solid var(--light-border);animation:fadeUp .5s ease}
+.result.active{display:block}
+.result-top{text-align:center;margin-bottom:28px}
+.result-icon{width:68px;height:68px;background:linear-gradient(135deg,var(--terracotta),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px}
+.result-top h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--deep);margin-bottom:8px}
+.result-top p{color:var(--mid);font-size:14px;font-weight:300;line-height:1.6;max-width:400px;margin:0 auto}
 
-  /* ─── Action buttons ─── */
-  .btn-row{display:flex;gap:14px;justify-content:center;margin-top:2rem;flex-wrap:wrap}
-  .send-btn{padding:14px 36px;font-family:var(--ff-body);font-size:14px;font-weight:600;
-    background:var(--accent);color:var(--brand);border:1.5px solid var(--accent);
-    border-radius:var(--radius);cursor:pointer;transition:all .25s ease;letter-spacing:.3px}
-  .send-btn:hover{background:var(--accent-light);border-color:var(--accent-light)}
-  .send-btn:disabled{opacity:.45;cursor:not-allowed}
-  .copy-btn{padding:14px 36px;font-family:var(--ff-body);font-size:14px;font-weight:500;
-    background:transparent;border:1.5px solid var(--border);color:var(--text-mid);
-    border-radius:var(--radius);cursor:pointer;transition:all .25s ease}
-  .copy-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
-  .send-status{text-align:center;margin-top:1.25rem;font-size:13px;font-weight:400;color:var(--muted)}
+.brief-box{background:var(--cream);border:1px solid var(--light-border);border-radius:12px;padding:20px;font-size:13px;color:var(--deep);line-height:1.85;max-height:380px;overflow-y:auto;white-space:pre-wrap;font-family:'DM Sans',sans-serif;margin-bottom:16px}
 
-  /* ─── Responsive ─── */
-  @media(max-width:520px){
-    .row2{grid-template-columns:1fr}
-    .wrap{padding:2rem 1rem 4rem}
-    .btn-row{flex-direction:column;align-items:stretch}
-    .send-btn,.copy-btn{text-align:center}
-  }
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.result-actions button{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:11px 22px;border-radius:9px;cursor:pointer;transition:all .2s;border:1.5px solid var(--light-border);background:transparent;color:var(--deep)}
+.result-actions button:hover{background:var(--cream)}
+.result-actions button.main-action{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+.result-actions button.main-action:hover{opacity:.87}
+.copied{font-size:12px;color:var(--gold);text-align:center;margin-top:10px;display:none}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <div class="header">
-    <span class="tag">Formulario</span>
-    <h1>Brand <em>Briefing</em></h1>
-    <p>Responde con honestidad. Cuanto más específicas sean tus respuestas, mejores resultados obtendrá el proyecto creativo.</p>
-  </div>
-
-  <div class="progress-bar" id="progressBar"></div>
-
-  <div id="formArea">
-
-    <div class="section active" data-idx="0">
-      <span class="section-tag">01 / Identidad</span>
-      <h2 class="section-title">La marca en esencia</h2>
-      <p class="section-desc">El punto de partida. Necesitamos entender quién es la marca antes de diseñar nada.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">01</span> ¿Cuál es el nombre de la marca y a qué se dedica?</div>
-        <div class="q-hint">Nombre comercial y descripción breve del producto o servicio principal.</div>
-        <textarea id="q1" placeholder="Ej: Noma Studio — estudio de arquitectura interior de alta gama basado en Barcelona..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">02</span> ¿Cuánto tiempo lleva operando y cuál es su historia breve?</div>
-        <div class="q-hint">Año de fundación, hitos clave, cómo ha evolucionado.</div>
-        <textarea id="q2" placeholder="Ej: Fundada en 2019 por dos arquitectos ex-OMA. Empezamos en retail y ahora trabajamos solo residencial de lujo..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">03</span> ¿Cuáles son los 3 valores que definen la marca?</div>
-        <div class="q-hint">No los que "deberían ser", sino los que realmente guían decisiones internas.</div>
-        <input type="text" id="q3" placeholder="Ej: Excelencia craftsmanship, honestidad radical, slow design">
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">04</span> Si la marca fuera una persona, ¿cómo la describirías?</div>
-        <div class="q-hint">Edad, personalidad, cómo habla, qué lee, adónde va.</div>
-        <textarea id="q4" placeholder="Ej: Mujer de 38 años, directora creativa. Lee Monocle, viaja a Tokio, habla poco pero con precisión..."></textarea>
-      </div>
-    </div>
-
-    <div class="section" data-idx="1">
-      <span class="section-tag">02 / Audiencia</span>
-      <h2 class="section-title">A quién le hablas</h2>
-      <p class="section-desc">Entender al receptor es tan importante como entender al emisor. Sé específico.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">05</span> ¿Quién es tu cliente ideal? Descríbelo con detalle.</div>
-        <div class="q-hint">Edad, profesión, nivel socioeconómico, estilo de vida, valores, aspiraciones.</div>
-        <textarea id="q5" placeholder="Ej: 30–45 años, profesionales independientes o directivos. Viven en ciudades como Madrid, Barcelona, Lisboa..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">06</span> ¿Qué problema concreto le resuelves?</div>
-        <div class="q-hint">El pain point real, no el que suena bien en un pitch.</div>
-        <textarea id="q6" placeholder="Ej: Tienen dinero pero no tiempo. Quieren un espacio que refleje quiénes son pero no saben cómo articularlo..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">07</span> ¿Qué NO quiere ver o escuchar tu cliente?</div>
-        <div class="q-hint">Tonos, mensajes o estéticas que le alejarían inmediatamente.</div>
-        <textarea id="q7" placeholder="Ej: Lenguaje corporativo frío, descuentos agresivos, estética Instagram genérica..."></textarea>
-      </div>
-    </div>
-
-    <div class="section" data-idx="2">
-      <span class="section-tag">03 / Voz</span>
-      <h2 class="section-title">Cómo se comunica la marca</h2>
-      <p class="section-desc">La voz es el alma de la marca. Define cómo piensa y qué transmite en cada mensaje.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">08</span> ¿Cómo describe la marca lo que hace en una sola frase?</div>
-        <div class="q-hint">Sin jerga de sector. Como se lo contaría a alguien en una cena.</div>
-        <input type="text" id="q8" placeholder="Ej: Diseñamos espacios que te hacen querer quedarte en casa">
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">09</span> ¿Cuál es el tono de comunicación?</div>
-        <div class="q-hint">Selecciona los que se acercan más a la realidad de la marca.</div>
-        <div class="chips" id="tone-chips">
-          <span class="chip" data-g="tone">Sofisticado</span><span class="chip" data-g="tone">Cercano</span>
-          <span class="chip" data-g="tone">Irreverente</span><span class="chip" data-g="tone">Minimalista</span>
-          <span class="chip" data-g="tone">Técnico/experto</span><span class="chip" data-g="tone">Emocional</span>
-          <span class="chip" data-g="tone">Directo/crudo</span><span class="chip" data-g="tone">Inspiracional</span>
-          <span class="chip" data-g="tone">Lúdico</span><span class="chip" data-g="tone">Premium/lujo</span>
-          <span class="chip" data-g="tone">Activista</span><span class="chip" data-g="tone">Académico</span>
-        </div>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">10</span> Pon 2 ejemplos de marcas que comunicarían de forma similar.</div>
-        <div class="q-hint">No tienen que ser del mismo sector. Solo en cuanto a tono y estilo.</div>
-        <input type="text" id="q10" placeholder="Ej: Aesop, Kinfolk — lenguaje cuidado, sin prisa, sensorial">
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">11</span> ¿Qué 3 palabras o frases NUNCA usaría la marca?</div>
-        <div class="q-hint">Palabras que la desposicionan o que simplemente no le pertenecen.</div>
-        <input type="text" id="q11" placeholder='Ej: "Calidad-precio", "solución integral", "empoderarte"'>
-      </div>
-    </div>
-
-    <div class="section" data-idx="3">
-      <span class="section-tag">04 / Visual</span>
-      <h2 class="section-title">Identidad visual</h2>
-      <p class="section-desc">El estado actual de la marca visualmente y la dirección donde debería ir.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">12</span> ¿La marca tiene identidad visual existente? ¿Funciona?</div>
-        <div class="q-hint">Logo, colores, tipografía. ¿Qué se mantiene, qué se cambia, qué se parte desde cero?</div>
-        <textarea id="q12" placeholder="Ej: Tenemos logo desde 2018, ya no nos representa. Los colores sí los queremos mantener..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">13</span> ¿Qué sensación visual quieres provocar?</div>
-        <div class="q-hint">Selecciona las que mejor representan la dirección estética deseada.</div>
-        <div class="chips" id="vibe-chips">
-          <span class="chip" data-g="vibe">Atemporal / clásico</span><span class="chip" data-g="vibe">Moderno / contemporáneo</span>
-          <span class="chip" data-g="vibe">Crudo / editorial</span><span class="chip" data-g="vibe">Orgánico / natural</span>
-          <span class="chip" data-g="vibe">Geométrico / estructural</span><span class="chip" data-g="vibe">Maximalista</span>
-          <span class="chip" data-g="vibe">Ultra minimalista</span><span class="chip" data-g="vibe">Artesanal / handmade</span>
-          <span class="chip" data-g="vibe">Tecnológico / futurista</span><span class="chip" data-g="vibe">Lúdico / colorido</span>
-        </div>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">14</span> Nombra 3 marcas cuya identidad visual admiras (de cualquier sector).</div>
-        <div class="q-hint">Y especifica qué te gusta: el logo, la paleta, la tipografía, el sistema en general...</div>
-        <textarea id="q14" placeholder="Ej: Bottega Veneta — la paleta tierra y el uso del espacio en blanco..."></textarea>
-      </div>
-    </div>
-
-    <div class="section" data-idx="4">
-      <span class="section-tag">05 / Mercado</span>
-      <h2 class="section-title">Competencia y posicionamiento</h2>
-      <p class="section-desc">Saber dónde está la marca en el mapa del mercado para diferenciarse con intención.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">15</span> ¿Quiénes son tus 3 competidores principales?</div>
-        <div class="q-hint">Los que compiten directamente por el mismo cliente o espacio mental.</div>
-        <textarea id="q15" placeholder="Ej: Studio X, Forma Estudio, Diez+Diez..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">16</span> ¿Qué hace tu marca que ninguna otra hace igual?</div>
-        <div class="q-hint">Tu diferencia real. No la que pone en tu web, sino la que tus clientes te repiten.</div>
-        <textarea id="q16" placeholder="Ej: Nuestros clientes siempre dicen que los escuchamos de verdad..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">17</span> ¿Cómo quieres que te perciban frente a la competencia?</div>
-        <div class="q-hint">Selecciona tu posicionamiento deseado.</div>
-        <div class="chips" id="pos-chips">
-          <span class="chip" data-g="pos">El más premium</span><span class="chip" data-g="pos">El más accesible</span>
-          <span class="chip" data-g="pos">El más honesto</span><span class="chip" data-g="pos">El más innovador</span>
-          <span class="chip" data-g="pos">El más especializado</span><span class="chip" data-g="pos">El más humano</span>
-          <span class="chip" data-g="pos">El más sostenible</span><span class="chip" data-g="pos">El más disruptivo</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" data-idx="5">
-      <span class="section-tag">06 / Proyecto</span>
-      <h2 class="section-title">El encargo concreto</h2>
-      <p class="section-desc">Qué hay que crear, por qué ahora y cuál es el éxito para esta marca.</p>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">18</span> ¿Qué necesitas que se cree en este proyecto?</div>
-        <div class="q-hint">Entregables concretos: identidad, web, campaña, packaging, naming, contenido...</div>
-        <textarea id="q18" placeholder="Ej: Nueva identidad visual completa + website de 5 páginas + kit de redes..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">19</span> ¿Por qué ahora? ¿Qué ha cambiado?</div>
-        <div class="q-hint">El detonante real del proyecto. Rebranding, lanzamiento, nuevo mercado, inversión...</div>
-        <textarea id="q19" placeholder="Ej: Vamos a abrir segunda sede y la imagen actual no funciona..."></textarea>
-      </div>
-      <div class="q-block">
-        <div class="q-label"><span class="q-num">20</span> ¿Cómo sabrás que el proyecto fue un éxito?</div>
-        <div class="q-hint">Métrica, sensación, objetivo de negocio. Lo que sea concreto para ti.</div>
-        <textarea id="q20" placeholder="Ej: Que cuando un cliente potencial vea la web diga 'esto es exactamente lo que busco'..."></textarea>
-      </div>
-      <div class="row2">
-        <div class="q-block">
-          <div class="q-label"><span class="q-num">21</span> ¿Fecha de lanzamiento o deadline?</div>
-          <input type="text" id="q21" placeholder="Ej: 15 de septiembre 2025">
-        </div>
-        <div class="q-block">
-          <div class="q-label"><span class="q-num">22</span> Rango de inversión previsto</div>
-          <select id="q22">
-            <option value="">— Selecciona —</option>
-            <option>Menos de 3.000 €</option>
-            <option>3.000 – 8.000 €</option>
-            <option>8.000 – 20.000 €</option>
-            <option>20.000 – 50.000 €</option>
-            <option>Más de 50.000 €</option>
-            <option>Por definir</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="nav-row" id="navRow">
-    <button class="btn btn-ghost" id="prevBtn" onclick="navigate(-1)" style="visibility:hidden">← Anterior</button>
-    <span class="nav-info" id="navInfo">Sección 1 de 6</span>
-    <button class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Siguiente →</button>
-  </div>
-
-  <div class="result-wrap" id="resultWrap">
-    <div class="result-header">
-      <div class="result-icon">✓</div>
-      <h2>Briefing completado</h2>
-      <p>Aquí tienes un resumen de todas las respuestas recogidas.</p>
-    </div>
-    <div class="result-grid" id="resultGrid"></div>
-    <div class="btn-row">
-      <button class="send-btn" id="sendBtn" onclick="sendToSheets()">Enviar a Google Sheets</button>
-      <button class="copy-btn" onclick="copyBrief()">Copiar briefing</button>
-    </div>
-    <div class="send-status" id="sendStatus"></div>
+<div class="hero">
+  <div class="brand-tag">✦ Yacadi — Briefing de Marca</div>
+  <h1>Cuéntanos todo<br>sobre <em>tu negocio</em></h1>
+  <p>Este formulario nos ayuda a entender tu marca a fondo para crear el sistema digital perfecto. Sin respuestas malas — entre más detalle, mejores resultados.</p>
+  <div class="hero-meta">
+    <span>7 secciones</span>
+    <span>~12 minutos</span>
+    <span>Tus respuestas, tu brief</span>
   </div>
 </div>
 
+<div class="sticky-progress" id="progressWrap">
+  <div class="progress-track">
+    <div class="progress-steps" id="progSteps"></div>
+    <div class="progress-label">
+      <span id="progSectionName">La marca</span>
+      <strong id="progFraction">1 / 7</strong>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrapper">
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 1 · LA MARCA
+════════════════════════════════════════ -->
+<div class="section active" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">
+      <h2>La marca</h2>
+      <p>Quién es Yacadi, qué la hace única y cómo la describirías si no la conociera nadie</p>
+    </div>
+  </div>
+  <div class="ai-note">Estas respuestas definen la voz y el alma de la marca para todo lo que creamos</div>
+
+  <div class="field">
+    <label class="field-label">¿Cuántos años lleva Yacadi funcionando? <span class="req">*</span></label>
+    <div class="option-group g2">
+      <div class="opt"><input type="radio" name="edad_marca" id="e1" value="Menos de 1 año"><label for="e1">Menos de 1 año</label></div>
+      <div class="opt"><input type="radio" name="edad_marca" id="e2" value="1 a 3 años"><label for="e2">1 a 3 años</label></div>
+      <div class="opt"><input type="radio" name="edad_marca" id="e3" value="3 a 5 años"><label for="e3">3 a 5 años</label></div>
+      <div class="opt"><input type="radio" name="edad_marca" id="e4" value="Más de 5 años"><label for="e4">Más de 5 años</label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cómo nació Yacadi? Cuéntanos la historia breve <span class="req">*</span></label>
+    <span class="hint">Por qué empezaste, cómo fue el primer año, cómo has crecido.</span>
+    <span class="example">Ej: "Empecé en 2019 con 20 referencias que cosía yo misma. Mis primeras clientas eran amigas que revendían en sus barrios. Hoy tenemos taller propio y más de 80 referencias..."</span>
+    <textarea id="historia" placeholder="Escribe aquí..."></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cómo describirías Yacadi en una sola frase? <span class="req">*</span></label>
+    <span class="hint">Sin lenguaje de marketing todavía. Como se lo contarías a alguien en una conversación.</span>
+    <span class="example">Ej: "Ropa femenina de calidad para revendedoras de toda Colombia, con diseños propios y precios de mayoreo reales"</span>
+    <textarea id="descripcion_marca" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cuáles son los 3 valores más reales de Yacadi?</label>
+    <span class="hint">No los que "deberían ser" — los que de verdad guían tus decisiones todos los días.</span>
+    <span class="example">Ej: "Calidad sin engaños, puntualidad en entregas, trato justo con las revendedoras"</span>
+    <input type="text" id="valores" placeholder="Valor 1, Valor 2, Valor 3...">
+  </div>
+
+  <div class="field">
+    <label class="field-label">Si Yacadi fuera una persona, ¿cómo sería?</label>
+    <span class="hint">Edad, personalidad, cómo habla, qué actitud tiene. Esto ayuda a definir el tono de toda la comunicación.</span>
+    <span class="example">Ej: "Una mujer de 40 años, trabajadora, directa, que no promete lo que no puede cumplir. Habla claro, da confianza, conoce bien el negocio"</span>
+    <textarea id="personalidad" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué hace diferente a Yacadi dentro de San Victorino y del mercado mayorista? <span class="req">*</span></label>
+    <span class="hint">Calidad de tela, diseños propios, atención, precios, puntualidad, variedad de tallas — lo que sea real.</span>
+    <textarea id="diferenciador" placeholder="Escribe aquí..."></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Fabricas tú la ropa o la compras para revender?</label>
+    <div class="option-group g2">
+      <div class="opt"><input type="radio" name="fabricacion" id="f1" value="Fabricamos nosotros"><label for="f1">Fabricamos nosotros</label></div>
+      <div class="opt"><input type="radio" name="fabricacion" id="f2" value="Compramos y revendemos"><label for="f2">Compramos y revendemos</label></div>
+      <div class="opt"><input type="radio" name="fabricacion" id="f3" value="Mitad y mitad"><label for="f3">Mitad y mitad</label></div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <span></span>
+    <span class="step-counter">Sección 1 de 7</span>
+    <button class="btn btn-primary" onclick="go(1,2)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 2 · EL PRODUCTO
+════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">
+      <h2>El producto</h2>
+      <p>Qué vendes, cómo es, en qué rangos de precio y cuál es tu estrella</p>
+    </div>
+  </div>
+  <div class="ai-note">El producto físico es el centro de todo — cuanto más específica, mejor el contenido</div>
+
+  <div class="field">
+    <label class="field-label">¿Qué tipos de ropa vende Yacadi? <span class="req">*</span> <span class="hint">Puedes marcar varios</span></label>
+    <div class="option-group auto">
+      <div class="opt"><input type="checkbox" id="p1" value="Blusas y tops"><label for="p1">Blusas y tops</label></div>
+      <div class="opt"><input type="checkbox" id="p2" value="Pantalones y jeans"><label for="p2">Pantalones y jeans</label></div>
+      <div class="opt"><input type="checkbox" id="p3" value="Vestidos"><label for="p3">Vestidos</label></div>
+      <div class="opt"><input type="checkbox" id="p4" value="Conjuntos"><label for="p4">Conjuntos</label></div>
+      <div class="opt"><input type="checkbox" id="p5" value="Faldas"><label for="p5">Faldas</label></div>
+      <div class="opt"><input type="checkbox" id="p6" value="Ropa casual"><label for="p6">Ropa casual</label></div>
+      <div class="opt"><input type="checkbox" id="p7" value="Ropa de oficina"><label for="p7">Ropa de oficina</label></div>
+      <div class="opt"><input type="checkbox" id="p8" value="Ropa de fiesta"><label for="p8">Ropa de fiesta</label></div>
+      <div class="opt"><input type="checkbox" id="p9" value="Ropa deportiva"><label for="p9">Ropa deportiva</label></div>
+      <div class="opt"><input type="checkbox" id="p10" value="Otro"><label for="p10">Otro</label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Describe tu prenda estrella — la que más se vende y la que mejor representa Yacadi</label>
+    <span class="hint">Qué es, cómo se ve, por qué gusta, quién la compra, a qué precio.</span>
+    <span class="example">Ej: "Blusa camisera de lino con bordado en el cuello. $35.000 mayoreo. Es lo primero que se agota. Las revendedoras dicen que se vende sola porque tiene un precio y una caída únicos"</span>
+    <textarea id="estrella" placeholder="Escribe aquí..."></textarea>
+  </div>
+
+  <hr class="div">
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">¿Cuántas referencias tiene el catálogo hoy?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="referencias" id="r1" value="Menos de 20"><label for="r1">Menos de 20</label></div>
+        <div class="opt"><input type="radio" name="referencias" id="r2" value="20 a 50"><label for="r2">20 a 50</label></div>
+        <div class="opt"><input type="radio" name="referencias" id="r3" value="50 a 100"><label for="r3">50 a 100</label></div>
+        <div class="opt"><input type="radio" name="referencias" id="r4" value="Más de 100"><label for="r4">Más de 100</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Con qué frecuencia sacan colección nueva?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="coleccion" id="c1" value="Cada semana"><label for="c1">Cada semana</label></div>
+        <div class="opt"><input type="radio" name="coleccion" id="c2" value="Cada 15 días"><label for="c2">Cada 15 días</label></div>
+        <div class="opt"><input type="radio" name="coleccion" id="c3" value="Cada mes"><label for="c3">Cada mes</label></div>
+        <div class="opt"><input type="radio" name="coleccion" id="c4" value="Cada temporada"><label for="c4">Cada temporada</label></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">Precio promedio de mayoreo por prenda</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="precio" id="pr1" value="Menos de $20.000"><label for="pr1">Menos de $20.000</label></div>
+        <div class="opt"><input type="radio" name="precio" id="pr2" value="$20.000 – $40.000"><label for="pr2">$20.000 – $40.000</label></div>
+        <div class="opt"><input type="radio" name="precio" id="pr3" value="$40.000 – $70.000"><label for="pr3">$40.000 – $70.000</label></div>
+        <div class="opt"><input type="radio" name="precio" id="pr4" value="Más de $70.000"><label for="pr4">Más de $70.000</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Cuánto es el pedido mínimo?</label>
+      <input type="text" id="pedido_minimo" placeholder="Ej: 6 prendas, 1 docena...">
+      <label class="field-label" style="margin-top:16px">Tallas disponibles</label>
+      <input type="text" id="tallas" placeholder="Ej: XS a XL, o 6 a 14, o talla única">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué NO tiene Yacadi que otros sí tienen — y está bien así?</label>
+    <span class="hint">Tus renuncias conscientes dicen tanto de la marca como tus virtudes.</span>
+    <span class="example">Ej: "No hacemos ropa talla plus, no tenemos versión económica, no vendemos en Rappi ni en marketplaces"</span>
+    <input type="text" id="renuncias" placeholder="Escribe aquí...">
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(2,1)">← Atrás</button>
+    <span class="step-counter">Sección 2 de 7</span>
+    <button class="btn btn-primary" onclick="go(2,3)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 3 · LAS CLIENTAS
+════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">
+      <h2>Tus clientas</h2>
+      <p>Quién compra, desde dónde, cuándo y por qué vuelve</p>
+    </div>
+  </div>
+  <div class="ai-note">Entender a la compradora es tan importante como entender el producto</div>
+
+  <div class="field">
+    <label class="field-label">¿En qué ciudades están tus clientas principales? <span class="req">*</span> <span class="hint">Puedes marcar varias</span></label>
+    <div class="option-group auto">
+      <div class="opt"><input type="checkbox" id="ci1" value="Bogotá"><label for="ci1">Bogotá</label></div>
+      <div class="opt"><input type="checkbox" id="ci2" value="Medellín"><label for="ci2">Medellín</label></div>
+      <div class="opt"><input type="checkbox" id="ci3" value="Cali"><label for="ci3">Cali</label></div>
+      <div class="opt"><input type="checkbox" id="ci4" value="Barranquilla"><label for="ci4">Barranquilla</label></div>
+      <div class="opt"><input type="checkbox" id="ci5" value="Bucaramanga"><label for="ci5">Bucaramanga</label></div>
+      <div class="opt"><input type="checkbox" id="ci6" value="Cartagena"><label for="ci6">Cartagena</label></div>
+      <div class="opt"><input type="checkbox" id="ci7" value="Ciudades intermedias"><label for="ci7">Ciudades intermedias</label></div>
+      <div class="opt"><input type="checkbox" id="ci8" value="Todo el país"><label for="ci8">Todo el país</label></div>
+    </div>
+  </div>
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">¿Cuántas clientas activas tienes? <span class="req">*</span></label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="num_clientas" id="nc1" value="Menos de 20"><label for="nc1">Menos de 20</label></div>
+        <div class="opt"><input type="radio" name="num_clientas" id="nc2" value="20 a 50"><label for="nc2">20 a 50</label></div>
+        <div class="opt"><input type="radio" name="num_clientas" id="nc3" value="50 a 100"><label for="nc3">50 a 100</label></div>
+        <div class="opt"><input type="radio" name="num_clientas" id="nc4" value="Más de 100"><label for="nc4">Más de 100</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Cómo encuentran Yacadi las clientas nuevas? <span class="hint">Puedes marcar varios</span></label>
+      <div class="option-group g1">
+        <div class="opt"><input type="checkbox" id="enc1" value="Instagram / Facebook"><label for="enc1">Instagram / Facebook</label></div>
+        <div class="opt"><input type="checkbox" id="enc2" value="WhatsApp / voz a voz"><label for="enc2">WhatsApp / voz a voz</label></div>
+        <div class="opt"><input type="checkbox" id="enc3" value="Local en San Victorino"><label for="enc3">Local en San Victorino</label></div>
+        <div class="opt"><input type="checkbox" id="enc4" value="Ferias o eventos"><label for="enc4">Ferias o eventos</label></div>
+        <div class="opt"><input type="checkbox" id="enc5" value="Anuncios pagados"><label for="enc5">Anuncios pagados</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Describe a tu clienta típica con tus palabras <span class="req">*</span></label>
+    <span class="hint">Edad, qué hace para vivir, cómo revende, qué le preocupa, qué le importa al comprar.</span>
+    <span class="example">Ej: "Son mujeres entre 30 y 50 años, revenden ropa en su barrio o por catálogo en WhatsApp. Les interesa buena ganancia, buen precio y que la ropa no se vea barata"</span>
+    <textarea id="clienta_tipica" placeholder="Escribe aquí..."></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué convence a una clienta de comprarte la PRIMERA vez?</label>
+    <span class="hint">El gancho de entrada — precio, fotos, recomendación, alguna prenda específica, la atención...</span>
+    <input type="text" id="driver_captacion" placeholder="Escribe aquí...">
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Y qué hace que una clienta VUELVA a pedir?</label>
+    <span class="hint">El driver de fidelización suele ser diferente al de captación. Ser honesta aquí es muy valioso.</span>
+    <span class="example">Ej: "Vuelven porque los modelos siempre se venden bien y nunca les hemos fallado en los envíos"</span>
+    <input type="text" id="driver_recompra" placeholder="Escribe aquí...">
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué otras marcas compra o revende tu clienta típica?</label>
+    <span class="hint">Marcas reales de mayoreo o retail. Nos dice mucho sobre su nivel de exigencia y su universo.</span>
+    <input type="text" id="otras_marcas" placeholder="Ej: Leonisa, Studio F, Bosi, marcas locales de San Victorino...">
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(3,2)">← Atrás</button>
+    <span class="step-counter">Sección 3 de 7</span>
+    <button class="btn btn-primary" onclick="go(3,4)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 4 · VENTAS Y COMPETENCIA
+════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">
+      <h2>Ventas y competencia</h2>
+      <p>Cómo funciona el negocio hoy y dónde está Yacadi en el mapa del mercado</p>
+    </div>
+  </div>
+  <div class="ai-note">Saber contra quién compites define dónde hay espacio para crecer</div>
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">¿Cuántos pedidos recibes al mes aprox.?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="pedidos_mes" id="pm1" value="Menos de 10"><label for="pm1">Menos de 10</label></div>
+        <div class="opt"><input type="radio" name="pedidos_mes" id="pm2" value="10 a 30"><label for="pm2">10 a 30</label></div>
+        <div class="opt"><input type="radio" name="pedidos_mes" id="pm3" value="30 a 60"><label for="pm3">30 a 60</label></div>
+        <div class="opt"><input type="radio" name="pedidos_mes" id="pm4" value="Más de 60"><label for="pm4">Más de 60</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Cómo llegan los pedidos hoy? <span class="hint">Puedes marcar varios</span></label>
+      <div class="option-group g1">
+        <div class="opt"><input type="checkbox" id="ll1" value="WhatsApp directo"><label for="ll1">WhatsApp directo</label></div>
+        <div class="opt"><input type="checkbox" id="ll2" value="Visitan el local"><label for="ll2">Visitan el local</label></div>
+        <div class="opt"><input type="checkbox" id="ll3" value="Por Instagram"><label for="ll3">Por Instagram</label></div>
+        <div class="opt"><input type="checkbox" id="ll4" value="Por Facebook"><label for="ll4">Por Facebook</label></div>
+        <div class="opt"><input type="checkbox" id="ll5" value="Clientas que repiten solas"><label for="ll5">Clientas que repiten solas</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Hacen envíos a todo Colombia?</label>
+    <div class="option-group g2">
+      <div class="opt"><input type="radio" name="envios" id="en1" value="Sí, a todo Colombia"><label for="en1">Sí, a todo Colombia</label></div>
+      <div class="opt"><input type="radio" name="envios" id="en2" value="Solo ciudades principales"><label for="en2">Solo ciudades principales</label></div>
+      <div class="opt"><input type="radio" name="envios" id="en3" value="Solo Bogotá"><label for="en3">Solo Bogotá</label></div>
+      <div class="opt"><input type="radio" name="envios" id="en4" value="No hacemos envíos"><label for="en4">No hacemos envíos</label></div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <div class="field">
+    <label class="field-label">¿Cuáles son tus 2 o 3 competidores principales?</label>
+    <span class="hint">Los que compiten directamente contigo — mismo precio, misma clienta, mismo canal.</span>
+    <span class="example">Ej: "Marca X del local 45 — más barata pero calidad regular. Marca Y — más conocida en redes, pero precios más altos. Marca Z — buen precio pero mala atención"</span>
+    <textarea id="competidores" placeholder="Escribe aquí..." rows="3"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cómo te posicionas frente a ellos en precio?</label>
+    <div class="chips" id="price-chips">
+      <span class="chip" data-g="price">Más barata que la mayoría</span>
+      <span class="chip" data-g="price">Precio similar — competimos directo</span>
+      <span class="chip" data-g="price">Más cara — pero mejor calidad</span>
+      <span class="chip" data-g="price">La más cara del segmento</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cuál es el problema principal de ventas hoy?</label>
+    <div class="option-group g1">
+      <div class="opt"><input type="radio" name="problema" id="pb1" value="No llegan suficientes clientas nuevas"><label for="pb1">No llegan suficientes clientas nuevas</label></div>
+      <div class="opt"><input type="radio" name="problema" id="pb2" value="Las clientas preguntan pero no compran"><label for="pb2">Las clientas preguntan pero no compran</label></div>
+      <div class="opt"><input type="radio" name="problema" id="pb3" value="Compran una vez y no vuelven"><label for="pb3">Compran una vez y no vuelven</label></div>
+      <div class="opt"><input type="radio" name="problema" id="pb4" value="No tenemos fotos bonitas del catálogo"><label for="pb4">No tenemos fotos bonitas del catálogo</label></div>
+      <div class="opt"><input type="radio" name="problema" id="pb5" value="No publicamos seguido en redes"><label for="pb5">No publicamos seguido en redes</label></div>
+      <div class="opt"><input type="radio" name="problema" id="pb6" value="Varios de los anteriores"><label for="pb6">Varios de los anteriores</label></div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(4,3)">← Atrás</button>
+    <span class="step-counter">Sección 4 de 7</span>
+    <button class="btn btn-primary" onclick="go(4,5)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 5 · IMAGEN Y PRESENTACIÓN
+════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">
+      <h2>Imagen y presentación</h2>
+      <p>Cómo se ve Yacadi hoy y cómo debería verse</p>
+    </div>
+  </div>
+  <div class="ai-note">El look de la marca en fotos, catálogos y redes es la primera impresión de cada clienta nueva</div>
+
+  <div class="field">
+    <label class="field-label">¿Cómo son las fotos del catálogo hoy?</label>
+    <div class="option-group g1">
+      <div class="opt"><input type="radio" name="fotos_actuales" id="fo1" value="Fotos en estudio, buena calidad"><label for="fo1">Fotos en estudio, buena calidad</label></div>
+      <div class="opt"><input type="radio" name="fotos_actuales" id="fo2" value="Fotos caseras pero aceptables"><label for="fo2">Fotos caseras pero aceptables</label></div>
+      <div class="opt"><input type="radio" name="fotos_actuales" id="fo3" value="Fotos básicas, hay que mejorarlas"><label for="fo3">Fotos básicas, hay que mejorarlas</label></div>
+      <div class="opt"><input type="radio" name="fotos_actuales" id="fo4" value="No tenemos fotos propias todavía"><label for="fo4">No tenemos fotos propias todavía</label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué sensación debería transmitir Yacadi visualmente? <span class="hint">Marca las que más se acercan a lo que quieres</span></label>
+    <div class="chips" id="feel-chips">
+      <span class="chip" data-g="feel">Profesional y confiable</span>
+      <span class="chip" data-g="feel">Femenina y elegante</span>
+      <span class="chip" data-g="feel">Cercana y accesible</span>
+      <span class="chip" data-g="feel">Moderna y fresca</span>
+      <span class="chip" data-g="feel">Colorida y llamativa</span>
+      <span class="chip" data-g="feel">Calidad premium</span>
+      <span class="chip" data-g="feel">Ropa para toda mujer</span>
+      <span class="chip" data-g="feel">Negocio serio y estable</span>
+      <span class="chip" data-g="feel">Energética y dinámica</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Hay alguna marca o catálogo de ropa cuya imagen visual te gusta? ¿Por qué?</label>
+    <span class="hint">No tiene que ser de la competencia. Cualquier marca cuyas fotos o diseño admires.</span>
+    <span class="example">Ej: "Me gusta cómo presenta sus catálogos Studio F — las fotos con modelo en fondo blanco, limpio. O como Leonisa muestra sus combos"</span>
+    <textarea id="referentes_visuales" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Tiene Yacadi logo, colores o identidad visual definida hoy?</label>
+    <span class="hint">Qué hay, qué funciona, qué se cambiaría o qué falta completamente.</span>
+    <textarea id="identidad_actual" placeholder="Ej: Tenemos logo desde hace 2 años pero queremos renovarlo. Los colores (rosa y blanco) no nos convencen. No tenemos fuente ni sistema de diseño..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué es lo que más llama la atención de la ropa de Yacadi cuando la ves en persona?</label>
+    <span class="hint">Color, tela, acabados, caída, bordados — lo que hace que alguien se acerque a verla mejor.</span>
+    <input type="text" id="atencion_fisica" placeholder="Escribe aquí...">
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(5,4)">← Atrás</button>
+    <span class="step-counter">Sección 5 de 7</span>
+    <button class="btn btn-primary" onclick="go(5,6)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 6 · REDES Y COMUNICACIÓN DIGITAL
+════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">
+      <h2>Redes y comunicación</h2>
+      <p>Qué tienes activo, cómo lo usas y qué debería mejorar</p>
+    </div>
+  </div>
+  <div class="ai-note">El canal digital es donde más vamos a trabajar juntas — necesitamos el estado real</div>
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">¿En qué redes tiene presencia Yacadi? <span class="hint">Puedes marcar varias</span></label>
+      <div class="option-group g1">
+        <div class="opt"><input type="checkbox" id="rs1" value="Instagram"><label for="rs1">Instagram</label></div>
+        <div class="opt"><input type="checkbox" id="rs2" value="Facebook"><label for="rs2">Facebook</label></div>
+        <div class="opt"><input type="checkbox" id="rs3" value="TikTok"><label for="rs3">TikTok</label></div>
+        <div class="opt"><input type="checkbox" id="rs4" value="WhatsApp Business"><label for="rs4">WhatsApp Business</label></div>
+        <div class="opt"><input type="checkbox" id="rs5" value="Ninguna todavía"><label for="rs5">Ninguna todavía</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Cuántos seguidores tiene el perfil principal?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="seguidores" id="sg1" value="Menos de 500"><label for="sg1">Menos de 500</label></div>
+        <div class="opt"><input type="radio" name="seguidores" id="sg2" value="500 a 2.000"><label for="sg2">500 a 2.000</label></div>
+        <div class="opt"><input type="radio" name="seguidores" id="sg3" value="2.000 a 10.000"><label for="sg3">2.000 a 10.000</label></div>
+        <div class="opt"><input type="radio" name="seguidores" id="sg4" value="Más de 10.000"><label for="sg4">Más de 10.000</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">¿Con qué frecuencia publican hoy?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="frec_pub" id="fp1" value="Todos los días"><label for="fp1">Todos los días</label></div>
+        <div class="opt"><input type="radio" name="frec_pub" id="fp2" value="2–3 veces por semana"><label for="fp2">2–3 veces/semana</label></div>
+        <div class="opt"><input type="radio" name="frec_pub" id="fp3" value="1 vez por semana"><label for="fp3">1 vez/semana</label></div>
+        <div class="opt"><input type="radio" name="frec_pub" id="fp4" value="Muy poco o nada"><label for="fp4">Muy poco o nada</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">¿Han hecho pauta pagada (anuncios)?</label>
+      <div class="option-group g1">
+        <div class="opt"><input type="radio" name="pauta" id="pa1" value="Sí, con buenos resultados"><label for="pa1">Sí, funcionó bien</label></div>
+        <div class="opt"><input type="radio" name="pauta" id="pa2" value="Sí, pero no funcionó bien"><label for="pa2">Sí, no funcionó bien</label></div>
+        <div class="opt"><input type="radio" name="pauta" id="pa3" value="No, nunca hemos pautado"><label for="pa3">Nunca hemos pautado</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué es lo más difícil de comunicar sobre Yacadi en redes?</label>
+    <span class="hint">Lo que en persona se ve claro pero en foto o video se pierde — la calidad de tela, los precios, la atención, el volumen de catálogo...</span>
+    <textarea id="dificultad_comunicacion" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué tipo de contenido ha funcionado mejor hasta ahora?</label>
+    <div class="chips" id="cont-chips">
+      <span class="chip" data-g="cont">Fotos de producto solo</span>
+      <span class="chip" data-g="cont">Fotos con modelo</span>
+      <span class="chip" data-g="cont">Videos mostrando la prenda</span>
+      <span class="chip" data-g="cont">Reels con música y movimiento</span>
+      <span class="chip" data-g="cont">Historias con precio y disponibilidad</span>
+      <span class="chip" data-g="cont">Testimonios de clientas</span>
+      <span class="chip" data-g="cont">Nada ha funcionado aún</span>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(6,5)">← Atrás</button>
+    <span class="step-counter">Sección 6 de 7</span>
+    <button class="btn btn-primary" onclick="go(6,7)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECCIÓN 7 · METAS Y EL PROYECTO
+════════════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">
+      <h2>Metas y el proyecto</h2>
+      <p>Hacia dónde quieres llevar Yacadi y qué necesitas que creemos</p>
+    </div>
+  </div>
+  <div class="ai-note">Esta sección define el éxito del proyecto — cuanto más específica, mejor</div>
+
+  <div class="field">
+    <label class="field-label">¿Cuántos pedidos al mes quisieras tener en 6 meses?</label>
+    <div class="option-group g2">
+      <div class="opt"><input type="radio" name="meta_pedidos" id="mp1" value="El doble de los actuales"><label for="mp1">El doble de los actuales</label></div>
+      <div class="opt"><input type="radio" name="meta_pedidos" id="mp2" value="3 veces más"><label for="mp2">3 veces más</label></div>
+      <div class="opt"><input type="radio" name="meta_pedidos" id="mp3" value="5 veces más o más"><label for="mp3">5 veces más</label></div>
+      <div class="opt"><input type="radio" name="meta_pedidos" id="mp4" value="No sé, pero muchos más"><label for="mp4">Muchos más 🙌</label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Qué quieres que haga el sistema digital por Yacadi? <span class="hint">Marca todo lo que aplica</span></label>
+    <div class="option-group g1">
+      <div class="opt"><input type="checkbox" id="sd1" value="Que lleguen más clientas nuevas solas"><label for="sd1">Que lleguen más clientas nuevas sin que yo las busque</label></div>
+      <div class="opt"><input type="checkbox" id="sd2" value="Fotos del catálogo más profesionales"><label for="sd2">Que las fotos del catálogo se vean profesionales</label></div>
+      <div class="opt"><input type="checkbox" id="sd3" value="Publicaciones en redes más constantes"><label for="sd3">Publicar en redes de forma constante y sin tanto esfuerzo</label></div>
+      <div class="opt"><input type="checkbox" id="sd4" value="Tener una vitrina / página web propia"><label for="sd4">Tener una vitrina o página web donde mostrar el catálogo</label></div>
+      <div class="opt"><input type="checkbox" id="sd5" value="Vender más a las clientas que ya tengo"><label for="sd5">Vender más a las clientas que ya tengo (reactivar, fidelizar)</label></div>
+      <div class="opt"><input type="checkbox" id="sd6" value="Que la marca se vea más profesional y seria"><label for="sd6">Que la marca se vea más seria y profesional</label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Cómo sabrás que el proyecto fue un éxito?</label>
+    <span class="hint">Qué tendría que pasar, verse o decir alguien para que consideres que valió la pena cada peso invertido.</span>
+    <span class="example">Ej: "Que cuando una clienta nueva vea el Instagram diga: esto se ve serio, quiero pedir. Y que los pedidos suban al menos un 30%"</span>
+    <textarea id="exito" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Por qué es importante hacer este cambio ahora?</label>
+    <span class="hint">Qué detonó este proyecto: una competencia que creció, un evento próximo, un objetivo de negocio, cansancio de como están las cosas...</span>
+    <textarea id="por_que_ahora" placeholder="Escribe aquí..." rows="2"></textarea>
+  </div>
+
+  <hr class="div">
+
+  <div class="g2-row">
+    <div class="field">
+      <label class="field-label">Tu nombre <span class="req">*</span></label>
+      <input type="text" id="nombre_responde" placeholder="Ej: María del Carmen">
+    </div>
+    <div class="field">
+      <label class="field-label">Tu WhatsApp <span class="req">*</span></label>
+      <input type="tel" id="whatsapp" placeholder="Ej: 3001234567">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Hay algo más que quieras contarnos sobre Yacadi?</label>
+    <span class="hint">Historia especial, algo importante que no encajó en ninguna pregunta, o cualquier cosa que quieras que sepamos antes de empezar.</span>
+    <textarea id="extra" placeholder="Escribe aquí lo que quieras..." rows="2"></textarea>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="go(7,6)">← Atrás</button>
+    <span class="step-counter">Sección 7 de 7</span>
+    <button class="btn btn-gold" onclick="submitForm()">Enviar briefing ✓</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PANTALLA DE RESULTADO
+════════════════════════════════════════ -->
+<div class="result" id="result">
+  <div class="result-top">
+    <div class="result-icon">🤍</div>
+    <h2>¡Gracias, eso es todo!</h2>
+    <p>Con este briefing vamos a construir algo hermoso para Yacadi.<br>Copia el resumen completo y compártelo con tu equipo creativo.</p>
+  </div>
+  <div class="brief-box" id="briefBox"></div>
+  <div id="sendStatus" style="display:none;text-align:center;font-size:13px;color:var(--mid);padding:10px 16px;background:var(--cream);border-radius:8px;border:1px solid var(--light-border);margin-bottom:14px"></div>
+  <div class="result-actions">
+    <button class="main-action" onclick="copyBrief()">Copiar briefing completo</button>
+    <button onclick="emailBrief()">Enviar por email</button>
+    <button onclick="resetAll()">Nuevo briefing</button>
+  </div>
+  <div class="copied" id="copiedMsg">✓ ¡Copiado! Pégalo en Claude, Notion o donde lo necesites.</div>
+</div>
+
+</div><!-- /form-wrapper -->
+
 <script>
-const SECTIONS = 6;
-let cur = 0;
+const TOTAL = 7;
+const SECTION_NAMES = ['La marca','El producto','Las clientas','Ventas y competencia','Imagen','Redes y comunicación','Metas y proyecto'];
+let cur = 1;
 
-const secs = document.querySelectorAll('.section');
-const bar = document.getElementById('progressBar');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const navInfo = document.getElementById('navInfo');
-const navRow = document.getElementById('navRow');
-const resultWrap = document.getElementById('resultWrap');
-const formArea = document.getElementById('formArea');
-
-for(let i=0;i<SECTIONS;i++){
-  const d=document.createElement('div');
-  d.className='prog-dot';d.id='dot'+i;bar.appendChild(d);
+/* --- PROGRESS BAR --- */
+function buildProgress(){
+  const el = document.getElementById('progSteps');
+  el.innerHTML = '';
+  for(let i=1;i<=TOTAL;i++){
+    const d = document.createElement('div');
+    d.className = 'prog-step' + (i<cur?' done':i===cur?' active':'');
+    el.appendChild(d);
+  }
+  document.getElementById('progSectionName').textContent = SECTION_NAMES[cur-1];
+  document.getElementById('progFraction').textContent = cur + ' / ' + TOTAL;
 }
 
+/* --- NAVIGATION --- */
+function go(from, to){
+  document.getElementById('s'+from).classList.remove('active');
+  const target = document.getElementById('s'+to);
+  if(target){ target.classList.add('active'); cur=to; buildProgress(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* --- CHIPS --- */
 document.querySelectorAll('.chip').forEach(c=>{
-  c.addEventListener('click',()=>c.classList.toggle('sel'));
+  c.addEventListener('click',()=>c.classList.toggle('on'));
 });
 
-function updateUI(){
-  secs.forEach((s,i)=>s.classList.toggle('active',i===cur));
-  document.querySelectorAll('.prog-dot').forEach((d,i)=>{
-    d.className='prog-dot'+(i<cur?' done':i===cur?' active':'');
-  });
-  prevBtn.style.visibility=cur===0?'hidden':'visible';
-  navInfo.textContent='Sección '+(cur+1)+' de '+SECTIONS;
-  nextBtn.textContent=cur===SECTIONS-1?'Ver resultados ✓':'Siguiente →';
-}
+/* --- COLLECTORS --- */
+function radio(name){ const el=document.querySelector(`input[name="${name}"]:checked`); return el?el.value:'No indicado'; }
+function checks(ids){ return ids.map(id=>document.getElementById(id)).filter(el=>el&&el.checked).map(el=>el.value).join(', ')||'No indicado'; }
+function chips(g){ return [...document.querySelectorAll(`.chip[data-g="${g}"].on`)].map(c=>c.textContent).join(', ')||'No indicado'; }
+function val(id){ const el=document.getElementById(id); return el&&el.value.trim()?el.value.trim():'No indicado'; }
 
-function navigate(dir){
-  if(dir===1&&cur===SECTIONS-1){showResult();return;}
-  cur=Math.max(0,Math.min(SECTIONS-1,cur+dir));
-  updateUI();
+/* ─── GOOGLE SHEETS CONFIG ───────────────────────────────
+   Pega aquí la URL de tu Google Apps Script Web App
+   Ejemplo: https://script.google.com/macros/s/XXXXX/exec
+──────────────────────────────────────────────────────── */
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwQMEgX1xU4UHjtApinPdsZWdXF3zFEjyED1F_BxHl4jw36dkyKsIomLuoaZmenbpE/exec';
+
+/* --- SUBMIT --- */
+async function submitForm(){
+  const nombre = val('nombre_responde');
+  const wa = val('whatsapp');
+  if(nombre === 'No indicado' || wa === 'No indicado'){
+    alert('Por favor completa tu nombre y WhatsApp antes de enviar.');
+    return;
+  }
+
+  const brief = buildBrief();
+
+  // Mostrar pantalla de resultado inmediatamente
+  document.getElementById('briefBox').textContent = brief;
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('progressWrap').style.display='none';
+  document.getElementById('result').classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+
+  // Enviar a Google Sheets en segundo plano
+  if(SHEETS_URL && SHEETS_URL !== 'TU_URL_AQUI'){
+    const payload = collectAllData();
+    setSendStatus('sending');
+    try{
+      await fetch(SHEETS_URL, {
+        method:'POST',
+        mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      setSendStatus('ok');
+    } catch(err){
+      setSendStatus('error');
+    }
+  } else {
+    setSendStatus('no-config');
+  }
 }
 
-const labels={
-  q1:'Nombre y descripción de la marca',q2:'Historia y evolución',
-  q3:'3 valores definitorios',q4:'La marca como persona',
-  q5:'Cliente ideal',q6:'Problema que resuelve',q7:'Lo que el cliente NO quiere ver',
-  q8:'Descripción en una frase',tone:'Tono de comunicación',
-  q10:'Marcas con tono similar',q11:'Palabras prohibidas',
-  q12:'Identidad visual existente',vibe:'Sensación visual deseada',
-  q14:'Marcas admiradas visualmente',q15:'Competidores principales',
-  q16:'Diferencia real de la marca',pos:'Posicionamiento deseado',
-  q18:'Entregables del proyecto',q19:'Por qué ahora',
-  q20:'Definición de éxito',q21:'Fecha límite',q22:'Rango de inversión'
-};
-
-function getChips(id){
-  return [...document.querySelectorAll(`.chip[data-g="${id}"].sel`)].map(c=>c.textContent).join(', ')||'—';
+function setSendStatus(status){
+  const el = document.getElementById('sendStatus');
+  if(!el) return;
+  const msgs = {
+    'sending': '⏳ Guardando en Google Sheets...',
+    'ok':      '✅ Guardado en Google Sheets correctamente',
+    'error':   '⚠️ No se pudo guardar en Sheets. Copia el brief manualmente.',
+    'no-config': '⚠️ Configura la URL de Google Sheets para guardar automáticamente.'
+  };
+  el.textContent = msgs[status] || '';
+  el.style.display = 'block';
 }
 
-function getVal(id){
-  const el=document.getElementById(id);
-  return el?(el.value.trim()||'—'):'—';
+function collectAllData(){
+  return {
+    timestamp: new Date().toLocaleString('es-CO'),
+    nombre: val('nombre_responde'),
+    whatsapp: val('whatsapp'),
+    edad_marca: radio('edad_marca'),
+    historia: val('historia'),
+    descripcion: val('descripcion_marca'),
+    valores: val('valores'),
+    personalidad: val('personalidad'),
+    diferenciador: val('diferenciador'),
+    fabricacion: radio('fabricacion'),
+    tipos_ropa: checks(['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10']),
+    estrella: val('estrella'),
+    referencias: radio('referencias'),
+    coleccion: radio('coleccion'),
+    precio: radio('precio'),
+    pedido_minimo: val('pedido_minimo'),
+    tallas: val('tallas'),
+    renuncias: val('renuncias'),
+    ciudades: checks(['ci1','ci2','ci3','ci4','ci5','ci6','ci7','ci8']),
+    num_clientas: radio('num_clientas'),
+    como_encuentran: checks(['enc1','enc2','enc3','enc4','enc5']),
+    clienta_tipica: val('clienta_tipica'),
+    driver_captacion: val('driver_captacion'),
+    driver_recompra: val('driver_recompra'),
+    otras_marcas: val('otras_marcas'),
+    pedidos_mes: radio('pedidos_mes'),
+    como_llegan: checks(['ll1','ll2','ll3','ll4','ll5']),
+    envios: radio('envios'),
+    competidores: val('competidores'),
+    precio_vs_competencia: chips('price'),
+    problema_ventas: radio('problema'),
+    fotos_actuales: radio('fotos_actuales'),
+    sensacion_visual: chips('feel'),
+    referentes_visuales: val('referentes_visuales'),
+    identidad_actual: val('identidad_actual'),
+    atencion_fisica: val('atencion_fisica'),
+    redes: checks(['rs1','rs2','rs3','rs4','rs5']),
+    seguidores: radio('seguidores'),
+    frec_publicacion: radio('frec_pub'),
+    pauta: radio('pauta'),
+    dificultad_comunicacion: val('dificultad_comunicacion'),
+    contenido_que_funciona: chips('cont'),
+    meta_pedidos: radio('meta_pedidos'),
+    sistema_digital: checks(['sd1','sd2','sd3','sd4','sd5','sd6']),
+    definicion_exito: val('exito'),
+    por_que_ahora: val('por_que_ahora'),
+    extra: val('extra'),
+    brief_completo: buildBrief()
+  };
 }
 
-function showResult(){
-  formArea.style.display='none';
-  navRow.style.display='none';
-  bar.style.display='none';
-  resultWrap.classList.add('show');
-  const grid=document.getElementById('resultGrid');
-  grid.innerHTML='';
-  const entries=[
-    ['q1',getVal('q1')],['q2',getVal('q2')],['q3',getVal('q3')],['q4',getVal('q4')],
-    ['q5',getVal('q5')],['q6',getVal('q6')],['q7',getVal('q7')],
-    ['q8',getVal('q8')],['tone',getChips('tone')],['q10',getVal('q10')],['q11',getVal('q11')],
-    ['q12',getVal('q12')],['vibe',getChips('vibe')],['q14',getVal('q14')],
-    ['q15',getVal('q15')],['q16',getVal('q16')],['pos',getChips('pos')],
-    ['q18',getVal('q18')],['q19',getVal('q19')],['q20',getVal('q20')],['q21',getVal('q21')],['q22',getVal('q22')]
-  ];
-  entries.forEach(([k,v],i)=>{
-    const card=document.createElement('div');
-    card.className='res-card';
-    card.innerHTML=`<div class="res-card-head"><span class="res-num">${String(i+1).padStart(2,'0')}</span><span class="res-q">${labels[k]||k}</span></div><div class="res-a">${v}</div>`;
-    grid.appendChild(card);
-  });
-  window.scrollTo({top:0,behavior:'smooth'});
+function buildBrief(){
+  return `╔══════════════════════════════════════╗
+  BRIEFING YACADI — MARCA DE PRODUCTO FÍSICO
+╚══════════════════════════════════════╝
+
+━━━ 01 · LA MARCA ━━━━━━━━━━━━━━━━━━━━━━━
+
+Nombre del contacto: ${val('nombre_responde')}
+WhatsApp: ${val('whatsapp')}
+Años operando: ${radio('edad_marca')}
+Historia de la marca: ${val('historia')}
+Descripción en una frase: ${val('descripcion_marca')}
+Valores reales: ${val('valores')}
+Personalidad de marca: ${val('personalidad')}
+Diferenciador vs competencia: ${val('diferenciador')}
+Modelo de negocio (fabricación): ${radio('fabricacion')}
+
+━━━ 02 · EL PRODUCTO ━━━━━━━━━━━━━━━━━━━━
+
+Tipos de ropa: ${checks(['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'])}
+Prenda estrella: ${val('estrella')}
+Referencias en catálogo: ${radio('referencias')}
+Frecuencia de colección nueva: ${radio('coleccion')}
+Precio promedio mayoreo: ${radio('precio')}
+Pedido mínimo: ${val('pedido_minimo')}
+Tallas disponibles: ${val('tallas')}
+Renuncias conscientes: ${val('renuncias')}
+
+━━━ 03 · LAS CLIENTAS ━━━━━━━━━━━━━━━━━━━
+
+Ciudades principales: ${checks(['ci1','ci2','ci3','ci4','ci5','ci6','ci7','ci8'])}
+Número de clientas activas: ${radio('num_clientas')}
+Cómo encuentran Yacadi: ${checks(['enc1','enc2','enc3','enc4','enc5'])}
+Descripción clienta típica: ${val('clienta_tipica')}
+Driver de captación (1ª compra): ${val('driver_captacion')}
+Driver de recompra (fidelización): ${val('driver_recompra')}
+Marcas de referencia de la clienta: ${val('otras_marcas')}
+
+━━━ 04 · VENTAS Y COMPETENCIA ━━━━━━━━━━━
+
+Pedidos por mes: ${radio('pedidos_mes')}
+Cómo llegan los pedidos: ${checks(['ll1','ll2','ll3','ll4','ll5'])}
+Cobertura de envíos: ${radio('envios')}
+Competidores principales: ${val('competidores')}
+Posicionamiento de precio: ${chips('price')}
+Problema principal de ventas: ${radio('problema')}
+
+━━━ 05 · IMAGEN Y PRESENTACIÓN ━━━━━━━━━━
+
+Fotos del catálogo hoy: ${radio('fotos_actuales')}
+Sensación visual deseada: ${chips('feel')}
+Referentes visuales admirados: ${val('referentes_visuales')}
+Identidad visual actual: ${val('identidad_actual')}
+Lo que llama la atención en persona: ${val('atencion_fisica')}
+
+━━━ 06 · REDES Y COMUNICACIÓN ━━━━━━━━━━━
+
+Redes activas: ${checks(['rs1','rs2','rs3','rs4','rs5'])}
+Seguidores perfil principal: ${radio('seguidores')}
+Frecuencia de publicación: ${radio('frec_pub')}
+Pauta pagada: ${radio('pauta')}
+Dificultad de comunicación: ${val('dificultad_comunicacion')}
+Contenido que mejor ha funcionado: ${chips('cont')}
+
+━━━ 07 · METAS Y EL PROYECTO ━━━━━━━━━━━━
+
+Meta de pedidos en 6 meses: ${radio('meta_pedidos')}
+Qué debe hacer el sistema digital: ${checks(['sd1','sd2','sd3','sd4','sd5','sd6'])}
+Definición de éxito: ${val('exito')}
+Por qué ahora: ${val('por_que_ahora')}
+Comentarios adicionales: ${val('extra')}
+
+══════════════════════════════════════════
+INSTRUCCIÓN PARA IA:
+Usa este briefing para tomar decisiones creativas
+sobre identidad visual, tono de comunicación,
+estructura de catálogo digital y estrategia de
+contenido para Yacadi. Prioriza lo que construye
+confianza en la revendedora y hace el catálogo
+más fácil de vender. Todo debe sonar como una
+mujer colombiana que conoce el negocio de la moda.
+══════════════════════════════════════════`;
 }
 
 function copyBrief(){
-  const entries=[
-    ['q1',getVal('q1')],['q2',getVal('q2')],['q3',getVal('q3')],['q4',getVal('q4')],
-    ['q5',getVal('q5')],['q6',getVal('q6')],['q7',getVal('q7')],
-    ['q8',getVal('q8')],['tone',getChips('tone')],['q10',getVal('q10')],['q11',getVal('q11')],
-    ['q12',getVal('q12')],['vibe',getChips('vibe')],['q14',getVal('q14')],
-    ['q15',getVal('q15')],['q16',getVal('q16')],['pos',getChips('pos')],
-    ['q18',getVal('q18')],['q19',getVal('q19')],['q20',getVal('q20')],['q21',getVal('q21')],['q22',getVal('q22')]
-  ];
-  const txt=entries.map(([k,v],i)=>`${String(i+1).padStart(2,'0')}. ${labels[k]||k}\n${v}`).join('\n\n');
-  navigator.clipboard.writeText(txt).then(()=>alert('Briefing copiado al portapapeles'));
-}
-
-function sendToSheets(){
-  const btn=document.getElementById('sendBtn');
-  const status=document.getElementById('sendStatus');
-  btn.disabled=true;
-  btn.textContent='Enviando...';
-  status.textContent='';
-
-  const data={
-    q1:getVal('q1'),q2:getVal('q2'),q3:getVal('q3'),q4:getVal('q4'),
-    q5:getVal('q5'),q6:getVal('q6'),q7:getVal('q7'),
-    q8:getVal('q8'),tone:getChips('tone'),q10:getVal('q10'),q11:getVal('q11'),
-    q12:getVal('q12'),vibe:getChips('vibe'),q14:getVal('q14'),
-    q15:getVal('q15'),q16:getVal('q16'),pos:getChips('pos'),
-    q18:getVal('q18'),q19:getVal('q19'),q20:getVal('q20'),q21:getVal('q21'),q22:getVal('q22'),
-    timestamp:new Date().toISOString()
-  };
-
-  fetch('https://script.google.com/macros/s/AKfycbwQMEgX1xU4UHjtApinPdsZWdXF3zFEjyED1F_BxHl4jw36dkyKsIomLuoaZmenbpE/exec',{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(data)
-  }).then(()=>{
-    btn.textContent='✓ Enviado correctamente';
-    btn.style.background='#2d6a4f';btn.style.borderColor='#2d6a4f';btn.style.color='#f0ede6';
-    status.textContent='Briefing enviado a Google Sheets';
-    status.style.color='#6abf8a';
-  }).catch(err=>{
-    btn.textContent='Error — Reintentar';
-    btn.disabled=false;
-    status.textContent='Error al enviar. Verifica tu conexión e intenta de nuevo.';
-    status.style.color='#e05555';
+  navigator.clipboard.writeText(document.getElementById('briefBox').textContent).then(()=>{
+    const msg=document.getElementById('copiedMsg');
+    msg.style.display='block';
+    setTimeout(()=>msg.style.display='none',3500);
   });
 }
 
-updateUI();
+function emailBrief(){
+  const subj = encodeURIComponent('Briefing Yacadi — Marca de producto físico');
+  const body = encodeURIComponent(document.getElementById('briefBox').textContent);
+  window.location.href = `mailto:?subject=${subj}&body=${body}`;
+}
+
+function resetAll(){
+  if(confirm('¿Borrar todo y empezar de nuevo?')){
+    document.querySelectorAll('input[type=text],input[type=tel],textarea').forEach(el=>el.value='');
+    document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(el=>el.checked=false);
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    document.getElementById('result').classList.remove('active');
+    document.getElementById('progressWrap').style.display='';
+    cur=1; buildProgress();
+    document.getElementById('s1').classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+
+buildProgress();
 </script>
 </body>
 </html>
