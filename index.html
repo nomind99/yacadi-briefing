@@ -1,76 +1,163 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Briefing — Yacadi</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
   *{box-sizing:border-box;margin:0;padding:0}
+
   :root{
-    --brand:#1a1a2e;--accent:#c8a96e;--surface:var(--color-background-secondary);
-    --border:var(--color-border-tertiary);--text:var(--color-text-primary);--muted:var(--color-text-secondary);
-    --ff-display:'Playfair Display',serif;--ff-body:'DM Sans',sans-serif;
+    --brand:#0f0f14;
+    --accent:#c8a96e;
+    --accent-light:#e8d5a8;
+    --accent-glow:rgba(200,169,110,.08);
+    --surface:#17171e;
+    --surface-2:#1e1e28;
+    --surface-3:#252530;
+    --border:#2a2a38;
+    --border-hover:#3a3a4a;
+    --text:#f0ede6;
+    --text-mid:#b0aca0;
+    --muted:#706c62;
+    --ff-display:'Instrument Serif',serif;
+    --ff-body:'DM Sans',sans-serif;
+    --radius:12px;
   }
-  .wrap{font-family:var(--ff-body);max-width:720px;margin:0 auto;padding:2rem 1rem 4rem}
-  .header{text-align:center;padding:2rem 0 2.5rem;border-bottom:0.5px solid var(--border);margin-bottom:2rem}
-  .header h1{font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--text);letter-spacing:-0.3px;margin-bottom:.5rem}
-  .header p{font-size:14px;color:var(--muted);font-weight:300;line-height:1.7}
-  .progress-bar{display:flex;gap:6px;justify-content:center;margin-bottom:2rem}
-  .prog-dot{width:28px;height:3px;border-radius:2px;background:var(--border);transition:background .3s}
-  .prog-dot.active{background:var(--accent)}
-  .prog-dot.done{background:var(--color-border-secondary)}
+
+  html{background:var(--brand);color:var(--text)}
+  body{font-family:var(--ff-body);-webkit-font-smoothing:antialiased}
+
+  .wrap{max-width:680px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+  /* ─── Header ─── */
+  .header{text-align:center;padding:2.5rem 0 3rem;margin-bottom:2.5rem;position:relative}
+  .header::after{content:'';display:block;width:60px;height:1px;background:var(--accent);margin:0 auto;position:absolute;bottom:0;left:50%;transform:translateX(-50%)}
+  .header .tag{font-family:var(--ff-body);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block}
+  .header h1{font-family:var(--ff-display);font-size:clamp(32px,5vw,42px);font-weight:400;color:var(--text);letter-spacing:-0.5px;margin-bottom:.75rem;line-height:1.15}
+  .header h1 em{font-style:italic;color:var(--accent)}
+  .header p{font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;max-width:420px;margin:0 auto}
+
+  /* ─── Progress ─── */
+  .progress-bar{display:flex;gap:6px;justify-content:center;margin-bottom:2.5rem}
+  .prog-dot{width:32px;height:3px;border-radius:3px;background:var(--surface-3);transition:all .4s ease}
+  .prog-dot.active{background:var(--accent);box-shadow:0 0 8px rgba(200,169,110,.3)}
+  .prog-dot.done{background:var(--border-hover)}
+
+  /* ─── Sections ─── */
   .section{display:none}
-  .section.active{display:block;animation:fadeUp .35s ease}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  .section-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-  .section-title{font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--text);margin-bottom:.4rem}
-  .section-desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:0.5px solid var(--border)}
-  .q-block{margin-bottom:1.5rem}
-  .q-label{font-size:13px;font-weight:500;color:var(--text);margin-bottom:.4rem;display:flex;align-items:center;gap:6px}
-  .q-num{font-size:11px;color:var(--accent);font-weight:400;font-family:var(--ff-display);font-style:italic}
-  .q-hint{font-size:12px;color:var(--muted);font-weight:300;margin-bottom:.6rem;line-height:1.5}
+  .section.active{display:block;animation:fadeUp .4s cubic-bezier(.22,1,.36,1)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  .section-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+  .section-title{font-family:var(--ff-display);font-size:clamp(22px,3.5vw,28px);font-weight:400;color:var(--text);margin-bottom:.5rem;line-height:1.2}
+  .section-desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+
+  /* ─── Question blocks ─── */
+  .q-block{margin-bottom:2rem}
+  .q-label{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.35rem;display:flex;align-items:baseline;gap:8px;line-height:1.5}
+  .q-num{font-size:12px;color:var(--accent);font-weight:400;font-family:var(--ff-display);font-style:italic;min-width:18px}
+  .q-hint{font-size:12px;color:var(--muted);font-weight:300;margin-bottom:.75rem;line-height:1.6}
+
+  /* ─── Inputs ─── */
   input[type=text],textarea,select{
-    width:100%;padding:10px 14px;font-family:var(--ff-body);font-size:14px;font-weight:300;
-    color:var(--text);background:var(--color-background-primary);
-    border:0.5px solid var(--border);border-radius:8px;outline:none;
-    transition:border .2s;resize:vertical
+    width:100%;padding:14px 18px;
+    font-family:var(--ff-body);font-size:15px;font-weight:300;
+    color:var(--text);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    outline:none;
+    transition:all .25s ease;
+    resize:vertical;
+    box-shadow:inset 0 1px 3px rgba(0,0,0,.15)
   }
-  input[type=text]:focus,textarea:focus,select:focus{border-color:var(--accent)}
-  textarea{min-height:88px;line-height:1.6}
-  select option{background:var(--color-background-primary);color:var(--text)}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .chip{padding:6px 14px;font-size:12px;font-weight:400;border-radius:20px;
-    border:0.5px solid var(--border);cursor:pointer;transition:all .2s;
-    background:var(--color-background-primary);color:var(--muted);user-select:none}
-  .chip.sel{border-color:var(--accent);color:var(--accent);background:transparent}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:0.5px solid var(--border)}
-  .nav-info{font-size:12px;color:var(--muted);font-weight:300}
-  .btn{padding:10px 24px;font-family:var(--ff-body);font-size:13px;font-weight:500;
-    border-radius:8px;cursor:pointer;transition:all .2s;border:0.5px solid}
-  .btn-ghost{background:transparent;color:var(--muted);border-color:var(--border)}
-  .btn-ghost:hover{color:var(--text);border-color:var(--color-border-secondary)}
-  .btn-primary{background:var(--accent);color:#1a1a2e;border-color:var(--accent)}
-  .btn-primary:hover{opacity:.9}
-  .result-wrap{display:none;animation:fadeUp .4s ease}
+  input[type=text]:hover,textarea:hover,select:hover{
+    border-color:var(--border-hover);
+    background:var(--surface-3)
+  }
+  input[type=text]:focus,textarea:focus,select:focus{
+    border-color:var(--accent);
+    background:var(--surface-3);
+    box-shadow:0 0 0 3px var(--accent-glow),inset 0 1px 3px rgba(0,0,0,.1)
+  }
+  input[type=text]::placeholder,textarea::placeholder{color:var(--muted);font-weight:300;opacity:.6}
+  textarea{min-height:100px;line-height:1.7}
+  select{cursor:pointer;appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23706c62' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center}
+  select option{background:var(--surface-2);color:var(--text);padding:8px}
+
+  /* ─── Chips ─── */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .chip{padding:8px 18px;font-size:13px;font-weight:400;border-radius:100px;
+    border:1px solid var(--border);cursor:pointer;transition:all .25s ease;
+    background:var(--surface-2);color:var(--text-mid);user-select:none}
+  .chip:hover{border-color:var(--border-hover);background:var(--surface-3);color:var(--text)}
+  .chip.sel{border-color:var(--accent);color:var(--accent);background:var(--accent-glow);font-weight:500}
+
+  /* ─── Grid ─── */
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* ─── Navigation ─── */
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--border)}
+  .nav-info{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:.5px}
+  .btn{padding:12px 28px;font-family:var(--ff-body);font-size:13px;font-weight:500;
+    border-radius:var(--radius);cursor:pointer;transition:all .25s ease;border:1px solid;letter-spacing:.3px}
+  .btn-ghost{background:transparent;color:var(--text-mid);border-color:var(--border)}
+  .btn-ghost:hover{color:var(--text);border-color:var(--border-hover);background:var(--surface-2)}
+  .btn-primary{background:var(--accent);color:var(--brand);border-color:var(--accent);font-weight:600}
+  .btn-primary:hover{background:var(--accent-light);border-color:var(--accent-light)}
+
+  /* ─── Results ─── */
+  .result-wrap{display:none;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
   .result-wrap.show{display:block}
-  .result-header{text-align:center;padding:2rem 0 1.5rem}
-  .result-icon{width:52px;height:52px;border-radius:50%;border:0.5px solid var(--accent);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:var(--accent);font-size:22px}
-  .result-header h2{font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--text);margin-bottom:.4rem}
+  .result-header{text-align:center;padding:2.5rem 0 2rem}
+  .result-icon{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;
+    color:var(--accent);font-size:24px;background:var(--accent-glow)}
+  .result-header h2{font-family:var(--ff-display);font-size:26px;font-weight:400;color:var(--text);margin-bottom:.5rem}
   .result-header p{font-size:13px;color:var(--muted);font-weight:300}
-  .result-grid{display:grid;gap:12px}
-  .res-card{background:var(--color-background-primary);border:0.5px solid var(--border);border-radius:10px;padding:14px 16px}
-  .res-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-  .res-num{font-size:11px;font-family:var(--ff-display);font-style:italic;color:var(--accent)}
-  .res-q{font-size:12px;font-weight:500;color:var(--text)}
-  .res-a{font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;word-break:break-word}
-  .copy-btn{display:block;margin:1.5rem auto 0;padding:12px 32px;font-family:var(--ff-body);font-size:13px;font-weight:500;
-    background:transparent;border:0.5px solid var(--accent);color:var(--accent);border-radius:8px;cursor:pointer;transition:all .2s}
-  .copy-btn:hover{background:var(--accent);color:#1a1a2e}
-  @media(max-width:520px){.row2{grid-template-columns:1fr}}
+
+  .result-grid{display:grid;gap:14px}
+  .res-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;transition:border-color .2s}
+  .res-card:hover{border-color:var(--border-hover)}
+  .res-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .res-num{font-size:12px;font-family:var(--ff-display);font-style:italic;color:var(--accent)}
+  .res-q{font-size:13px;font-weight:500;color:var(--text)}
+  .res-a{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.7;word-break:break-word}
+
+  /* ─── Action buttons ─── */
+  .btn-row{display:flex;gap:14px;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+  .send-btn{padding:14px 36px;font-family:var(--ff-body);font-size:14px;font-weight:600;
+    background:var(--accent);color:var(--brand);border:1.5px solid var(--accent);
+    border-radius:var(--radius);cursor:pointer;transition:all .25s ease;letter-spacing:.3px}
+  .send-btn:hover{background:var(--accent-light);border-color:var(--accent-light)}
+  .send-btn:disabled{opacity:.45;cursor:not-allowed}
+  .copy-btn{padding:14px 36px;font-family:var(--ff-body);font-size:14px;font-weight:500;
+    background:transparent;border:1.5px solid var(--border);color:var(--text-mid);
+    border-radius:var(--radius);cursor:pointer;transition:all .25s ease}
+  .copy-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
+  .send-status{text-align:center;margin-top:1.25rem;font-size:13px;font-weight:400;color:var(--muted)}
+
+  /* ─── Responsive ─── */
+  @media(max-width:520px){
+    .row2{grid-template-columns:1fr}
+    .wrap{padding:2rem 1rem 4rem}
+    .btn-row{flex-direction:column;align-items:stretch}
+    .send-btn,.copy-btn{text-align:center}
+  }
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <div class="header">
-    <h1>Brand Briefing</h1>
-    <p>Responde con honestidad. Cuanto más específicas sean tus respuestas,<br>mejores resultados obtendrá el proyecto creativo.</p>
+    <span class="tag">Formulario</span>
+    <h1>Brand <em>Briefing</em></h1>
+    <p>Responde con honestidad. Cuanto más específicas sean tus respuestas, mejores resultados obtendrá el proyecto creativo.</p>
   </div>
 
   <div class="progress-bar" id="progressBar"></div>
@@ -110,17 +197,17 @@
       <div class="q-block">
         <div class="q-label"><span class="q-num">05</span> ¿Quién es tu cliente ideal? Descríbelo con detalle.</div>
         <div class="q-hint">Edad, profesión, nivel socioeconómico, estilo de vida, valores, aspiraciones.</div>
-        <textarea id="q5" placeholder="Ej: 30–45 años, profesionales independientes o directivos. Viven en ciudades como Madrid, Barcelona, Lisboa. Priorizan experiencias sobre posesiones..."></textarea>
+        <textarea id="q5" placeholder="Ej: 30–45 años, profesionales independientes o directivos. Viven en ciudades como Madrid, Barcelona, Lisboa..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">06</span> ¿Qué problema concreto le resuelves?</div>
         <div class="q-hint">El pain point real, no el que suena bien en un pitch.</div>
-        <textarea id="q6" placeholder="Ej: Tienen dinero pero no tiempo. Quieren un espacio que refleje quiénes son pero no saben cómo articularlo sin caer en lo genérico..."></textarea>
+        <textarea id="q6" placeholder="Ej: Tienen dinero pero no tiempo. Quieren un espacio que refleje quiénes son pero no saben cómo articularlo..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">07</span> ¿Qué NO quiere ver o escuchar tu cliente?</div>
         <div class="q-hint">Tonos, mensajes o estéticas que le alejarían inmediatamente.</div>
-        <textarea id="q7" placeholder="Ej: Lenguaje corporativo frío, descuentos agresivos, estética Instagram genérica, fotos de banco de imágenes..."></textarea>
+        <textarea id="q7" placeholder="Ej: Lenguaje corporativo frío, descuentos agresivos, estética Instagram genérica..."></textarea>
       </div>
     </div>
 
@@ -164,7 +251,7 @@
       <div class="q-block">
         <div class="q-label"><span class="q-num">12</span> ¿La marca tiene identidad visual existente? ¿Funciona?</div>
         <div class="q-hint">Logo, colores, tipografía. ¿Qué se mantiene, qué se cambia, qué se parte desde cero?</div>
-        <textarea id="q12" placeholder="Ej: Tenemos logo desde 2018, ya no nos representa. Los colores (azul marino + beige) sí los queremos mantener. No hay sistema tipográfico definido..."></textarea>
+        <textarea id="q12" placeholder="Ej: Tenemos logo desde 2018, ya no nos representa. Los colores sí los queremos mantener..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">13</span> ¿Qué sensación visual quieres provocar?</div>
@@ -180,7 +267,7 @@
       <div class="q-block">
         <div class="q-label"><span class="q-num">14</span> Nombra 3 marcas cuya identidad visual admiras (de cualquier sector).</div>
         <div class="q-hint">Y especifica qué te gusta: el logo, la paleta, la tipografía, el sistema en general...</div>
-        <textarea id="q14" placeholder="Ej: Bottega Veneta — la paleta tierra y el uso del espacio en blanco. Hem — la coherencia entre lo digital y lo físico..."></textarea>
+        <textarea id="q14" placeholder="Ej: Bottega Veneta — la paleta tierra y el uso del espacio en blanco..."></textarea>
       </div>
     </div>
 
@@ -191,12 +278,12 @@
       <div class="q-block">
         <div class="q-label"><span class="q-num">15</span> ¿Quiénes son tus 3 competidores principales?</div>
         <div class="q-hint">Los que compiten directamente por el mismo cliente o espacio mental.</div>
-        <textarea id="q15" placeholder="Ej: Studio X, Forma Estudio, Diez+Diez. Los dos primeros son más baratos, el tercero tiene más notoriedad pero peor trato al cliente..."></textarea>
+        <textarea id="q15" placeholder="Ej: Studio X, Forma Estudio, Diez+Diez..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">16</span> ¿Qué hace tu marca que ninguna otra hace igual?</div>
         <div class="q-hint">Tu diferencia real. No la que pone en tu web, sino la que tus clientes te repiten.</div>
-        <textarea id="q16" placeholder="Ej: Nuestros clientes siempre dicen que los escuchamos de verdad. No proponemos estilos predefinidos sino que partimos de cero cada vez..."></textarea>
+        <textarea id="q16" placeholder="Ej: Nuestros clientes siempre dicen que los escuchamos de verdad..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">17</span> ¿Cómo quieres que te perciban frente a la competencia?</div>
@@ -217,17 +304,17 @@
       <div class="q-block">
         <div class="q-label"><span class="q-num">18</span> ¿Qué necesitas que se cree en este proyecto?</div>
         <div class="q-hint">Entregables concretos: identidad, web, campaña, packaging, naming, contenido...</div>
-        <textarea id="q18" placeholder="Ej: Nueva identidad visual completa (logo, paleta, tipografía, sistema de aplicación) + website de 5 páginas + kit de redes..."></textarea>
+        <textarea id="q18" placeholder="Ej: Nueva identidad visual completa + website de 5 páginas + kit de redes..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">19</span> ¿Por qué ahora? ¿Qué ha cambiado?</div>
         <div class="q-hint">El detonante real del proyecto. Rebranding, lanzamiento, nuevo mercado, inversión...</div>
-        <textarea id="q19" placeholder="Ej: Vamos a abrir segunda sede en Lisboa y la imagen actual no funciona fuera de España. Además captamos inversión en Q1..."></textarea>
+        <textarea id="q19" placeholder="Ej: Vamos a abrir segunda sede y la imagen actual no funciona..."></textarea>
       </div>
       <div class="q-block">
         <div class="q-label"><span class="q-num">20</span> ¿Cómo sabrás que el proyecto fue un éxito?</div>
         <div class="q-hint">Métrica, sensación, objetivo de negocio. Lo que sea concreto para ti.</div>
-        <textarea id="q20" placeholder="Ej: Que cuando un cliente potencial vea la web diga 'esto es exactamente lo que busco'. Y que el ticket medio suba un 20%..."></textarea>
+        <textarea id="q20" placeholder="Ej: Que cuando un cliente potencial vea la web diga 'esto es exactamente lo que busco'..."></textarea>
       </div>
       <div class="row2">
         <div class="q-block">
@@ -264,7 +351,11 @@
       <p>Aquí tienes un resumen de todas las respuestas recogidas.</p>
     </div>
     <div class="result-grid" id="resultGrid"></div>
-    <button class="copy-btn" onclick="copyBrief()">Copiar briefing completo</button>
+    <div class="btn-row">
+      <button class="send-btn" id="sendBtn" onclick="sendToSheets()">Enviar a Google Sheets</button>
+      <button class="copy-btn" onclick="copyBrief()">Copiar briefing</button>
+    </div>
+    <div class="send-status" id="sendStatus"></div>
   </div>
 </div>
 
@@ -366,5 +457,42 @@ function copyBrief(){
   navigator.clipboard.writeText(txt).then(()=>alert('Briefing copiado al portapapeles'));
 }
 
+function sendToSheets(){
+  const btn=document.getElementById('sendBtn');
+  const status=document.getElementById('sendStatus');
+  btn.disabled=true;
+  btn.textContent='Enviando...';
+  status.textContent='';
+
+  const data={
+    q1:getVal('q1'),q2:getVal('q2'),q3:getVal('q3'),q4:getVal('q4'),
+    q5:getVal('q5'),q6:getVal('q6'),q7:getVal('q7'),
+    q8:getVal('q8'),tone:getChips('tone'),q10:getVal('q10'),q11:getVal('q11'),
+    q12:getVal('q12'),vibe:getChips('vibe'),q14:getVal('q14'),
+    q15:getVal('q15'),q16:getVal('q16'),pos:getChips('pos'),
+    q18:getVal('q18'),q19:getVal('q19'),q20:getVal('q20'),q21:getVal('q21'),q22:getVal('q22'),
+    timestamp:new Date().toISOString()
+  };
+
+  fetch('https://script.google.com/macros/s/AKfycbwQMEgX1xU4UHjtApinPdsZWdXF3zFEjyED1F_BxHl4jw36dkyKsIomLuoaZmenbpE/exec',{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(data)
+  }).then(()=>{
+    btn.textContent='✓ Enviado correctamente';
+    btn.style.background='#2d6a4f';btn.style.borderColor='#2d6a4f';btn.style.color='#f0ede6';
+    status.textContent='Briefing enviado a Google Sheets';
+    status.style.color='#6abf8a';
+  }).catch(err=>{
+    btn.textContent='Error — Reintentar';
+    btn.disabled=false;
+    status.textContent='Error al enviar. Verifica tu conexión e intenta de nuevo.';
+    status.style.color='#e05555';
+  });
+}
+
 updateUI();
 </script>
+</body>
+</html>
